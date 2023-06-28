@@ -10,24 +10,38 @@
  * governing permissions and limitations under the License.
  */
 
- :root {
+@font-face {
+  font-family: 'Public Sans';
+  src: url('/fonts/PublicSans-VariableFont_wght.ttf');
+}
+
+@font-face {
+  font-family: ETmodules;
+  font-display: swap;
+  src: url(/fonts/modules.ttf);
+  font-weight: 400;
+  font-style: normal
+}
+
+:root {
   /* colors */
   --link-color: #035fe6;
   --link-hover-color: #136ff6;
   --background-color: #fff;
   --overlay-background-color: #eee;
   --highlight-background-color: #ccc;
+  --dark-background-color: #163963;
   --text-color: #000;
 
   /* fonts */
-  --body-font-family: 'helvetica neue', helvetica, ubuntu, roboto, noto, sans-serif;
+  --body-font-family: 'Public Sans', helvetica, arial, lucida, sans-serif;
   --heading-font-family: var(--body-font-family);
   --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
 
   /* body sizes */
   --body-font-size-m: 22px;
-  --body-font-size-s: 18px;
-  --body-font-size-xs: 16px;
+  --body-font-size-s: 14px;
+  --body-font-size-xs: 14px;
 
   /* heading sizes */
   --heading-font-size-xxl: 48px;
@@ -44,6 +58,10 @@
 
 @media (min-width: 900px) {
   :root {
+    --body-font-size-m: 22px;
+    --body-font-size-s: 18px;
+    --body-font-size-xs: 14px;
+
     --heading-font-size-xxl: 60px;
     --heading-font-size-xl: 48px;
     --heading-font-size-l: 36px;
@@ -68,11 +86,15 @@ body.appear {
 }
 
 header {
-  height: var(--nav-height);
+  /* height: var(--nav-height); */
 }
 
-h1, h2, h3,
-h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--heading-font-family);
   font-weight: 600;
   line-height: 1.25;
@@ -81,14 +103,36 @@ h4, h5, h6 {
   scroll-margin: calc(var(--nav-height) + 1em);
 }
 
-h1 { font-size: var(--heading-font-size-xxl) }
-h2 { font-size: var(--heading-font-size-xl) }
-h3 { font-size: var(--heading-font-size-l) }
-h4 { font-size: var(--heading-font-size-m) }
-h5 { font-size: var(--heading-font-size-s) }
-h6 { font-size: var(--heading-font-size-xs) }
+h1 {
+  font-size: var(--heading-font-size-xxl)
+}
 
-p, dl, ol, ul, pre, blockquote {
+h2 {
+  font-size: var(--heading-font-size-xl)
+}
+
+h3 {
+  font-size: var(--heading-font-size-l)
+}
+
+h4 {
+  font-size: var(--heading-font-size-m)
+}
+
+h5 {
+  font-size: var(--heading-font-size-s)
+}
+
+h6 {
+  font-size: var(--heading-font-size-xs)
+}
+
+p,
+dl,
+ol,
+ul,
+pre,
+blockquote {
   margin-top: 1em;
   margin-bottom: 1em;
 }
@@ -100,12 +144,15 @@ hr {
   border-bottom: 1px solid var(--overlay-background-color);
 }
 
-code, pre, samp {
+code,
+pre,
+samp {
   font-family: var(--fixed-font-family);
   font-size: var(--body-font-size-s);
 }
 
-code, samp {
+code,
+samp {
   padding: .125em;
 }
 
@@ -132,7 +179,8 @@ a:hover {
 }
 
 /* buttons */
-a.button:any-link, button {
+a.button:any-link,
+button {
   font-family: var(--body-font-family);
   display: inline-block;
   box-sizing: border-box;
@@ -152,17 +200,22 @@ a.button:any-link, button {
   border-radius: 30px;
 }
 
-a.button:hover, a.button:focus, button:hover, button:focus  {
+a.button:hover,
+a.button:focus,
+button:hover,
+button:focus {
   background-color: var(--link-hover-color);
   cursor: pointer;
 }
 
-button:disabled, button:disabled:hover {
+button:disabled,
+button:disabled:hover {
   background-color: var(--overlay-background-color);
   cursor: unset;
 }
 
-a.button.secondary, button.secondary {
+a.button.secondary,
+button.secondary {
   background-color: unset;
   border: 2px solid currentcolor;
   color: var(--text-color)
@@ -224,6 +277,20 @@ main .section {
   padding: 64px 16px;
 }
 
+.screen-reader-text {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  -webkit-clip-path: inset(50%);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  word-wrap: normal;
+}
+
 @media (min-width: 600px) {
   main .section {
     padding: 64px 32px;
@@ -231,7 +298,7 @@ main .section {
 }
 
 @media (min-width: 900px) {
-  .section > div {
+  .section>div {
     max-width: 1200px;
     margin: auto;
   }

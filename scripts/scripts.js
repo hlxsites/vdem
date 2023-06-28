@@ -13,6 +13,8 @@ import {
   loadCSS,
 } from './lib-franklin.js';
 
+export const isDesktop = window.matchMedia('(min-width: 900px)').matches;
+
 const LCP_BLOCKS = []; // add your LCP blocks to the list
 
 /**
@@ -41,6 +43,37 @@ function buildAutoBlocks(main) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
   }
+}
+
+export function template(strings, ...keys) {
+  return (...values) => {
+    const dict = values[values.length - 1] || {};
+    const result = [strings[0]];
+    keys.forEach((key, i) => {
+      const value = Number.isInteger(key) ? values[key] : dict[key];
+      result.push(value, strings[i + 1]);
+    });
+    return result.join('');
+  };
+}
+
+export function createEl(name, attributes = {}, content = '', parentEl = null) {
+  const el = document.createElement(name);
+
+  Object.keys(attributes).forEach((key) => {
+    el.setAttribute(key, attributes[key]);
+  });
+  if (content) {
+    if (typeof content === 'string') {
+      el.innerHTML = content;
+    } else {
+      el.append(content);
+    }
+  }
+  if (parentEl) {
+    parentEl.append(el);
+  }
+  return el;
 }
 
 /**
