@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  margin: 0 auto 0;
+  margin: 0 auto;
 }
 
 .header {
@@ -14,20 +14,33 @@
   width: 100%;
 }
 
+.header #agency-bar {
+  width: 100%;
+  height: 136px;
+}
+
 .header nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
   min-width: 100%;
+  margin: 25px auto;
 }
 
-.header .chin {
+.header .chin { 
   display: flex;
   flex-direction: column;
   align-items: center;
   color: #fff;
   background-color: var(--dark-background-color);
   padding: 6px 0;
+}
+
+.header nav>div {
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+  justify-content: space-between;
 }
 
 .header .chin>div {
@@ -55,14 +68,7 @@
 }
 
 .header nav p {
-  margin: 0cqmin;
-}
-
-.header nav>div {
-  display: flex;
-  width: 100%;
-  align-items: stretch;
-  justify-content: space-between;
+  margin: 0;
 }
 
 .header nav img {
@@ -101,11 +107,20 @@
   background-color: #fff;
 }
 
-.header nav ul ul img {
+.header nav li a {
   display: flex;
-  width: 64px;
-  height: 64px;
-  background-color: #fff;
+  position: relative;
+  min-width: 100%;
+  text-decoration: none;
+  color: #163963;
+  font-weight: 500;
+  line-height: 14px;
+  letter-spacing: 1px;
+  font-style: normal;
+}
+
+.header nav li {
+  min-height: 47px;
 }
 
 .header nav ul ul>li {
@@ -115,6 +130,7 @@
 }
 
 .header nav ul ul>li img {
+  display: flex;
   width: 32px;
   height: 32px;
 }
@@ -133,29 +149,13 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-bottom: 1px solid rgba(0, 0, 0, .03);
-  padding: 0 10px 0;
-}
-
-.header nav li {
-  min-height: 47px;
+  border-bottom: 1px solid rgba(0, 0, 0, 3%);
+  padding: 0 10px;
 }
 
 .header nav li strong {
   position: relative;
   min-width: 100%;
-}
-
-.header nav li a {
-  display: flex;
-  position: relative;
-  min-width: 100%;
-  text-decoration: none;
-  color: #163963;
-  font-weight: 500;
-  line-height: 14px;
-  letter-spacing: 1px;
-  font-style: normal;
 }
 
 .header nav li a.expander::after {
@@ -185,10 +185,14 @@
 
 /* Desktop */
 @media (min-width: 900px) {
-
   .header {
     width: 100%;
   }
+
+  .header #agency-bar {
+    height: 56px;
+  }
+  
 
   .header nav {
     min-width: 75%;
@@ -223,11 +227,15 @@
     column-gap: 22px;
     width: 50vw;
     height: 46px;
-    padding: 20px 0 20px;
+    padding: 20px 0;
     font-size: var(--body-font-size-xs);
   }
 
-  .header nav div>ul>li {
+  .header nav li {
+    height: 15px;
+  }
+
+  .header nav>div>ul>li {
     flex-direction: row;
     border: 0;
     padding: 0;
@@ -235,30 +243,52 @@
 
   .header nav ul ul.visible {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
     position: absolute;
     top: 86px;
-    left: 0;
+    right: 0;
+    max-width: 1280px;
+    min-height: 520px;
+    gap: 4px;
+    padding-left: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    background: #fff;
+    z-index: 100;
+  }
+
+  .header nav ul ul>li {
+    position: relative;
+    display: grid;
+    justify-self: flex-start;
+    grid-template-areas:
+      "icon link"
+      "icon text";
+    width: 250px;
+    min-height: 50px;
     background-color: #fff;
   }
 
-  .header nav ul ul>li img {}
+  .header nav ul ul>li img {
+    grid-area: icon;
+  }
 
-  .header nav ul ul>li a {}
+  .header nav ul ul>li a {
+    grid-area: link;
+  }
 
   .header nav ul ul>li p {
-    display: block;
+    display: inline-block;
+    grid-area: text;
   }
 
-  .header nav li {
-    height: 15px;
+  .header nav li a.expander {
+    padding-right: 15px;
   }
-
-.header nav li a.expander {
-  padding-right: 15px;
-}
 
   .header nav li a.expander::after {
-    font-family: ETmodules;
+    font-family: ETmodules, arial;
     content: "3";
     font-size: 16px;
     position: absolute;

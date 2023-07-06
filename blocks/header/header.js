@@ -6,6 +6,10 @@ import {
 } from '../../scripts/scripts.js';
 
 export default async function decorate(block) {
+  createEl('div', {
+    id: 'agency-bar',
+  }, '', block);
+
   // fetch nav content
   const navMeta = getMetadata('nav');
   const navPath = navMeta ? new URL(navMeta).pathname : '/nav';
@@ -33,6 +37,7 @@ export default async function decorate(block) {
       subMenuItemEls.forEach((subMenuItemEl) => {
         const pictureEl = subMenuItemEl.querySelector('picture');
         const linkEl = subMenuItemEl.querySelector('a');
+        linkEl.remove();
         const textEl = subMenuItemEl.textContent;
         subMenuItemEl.replaceChildren(pictureEl, linkEl, createEl('p', {}, textEl));
       });

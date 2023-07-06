@@ -11,6 +11,7 @@ import {
   waitForLCP,
   loadBlocks,
   loadCSS,
+  getMetadata,
 } from './lib-franklin.js';
 
 export const isDesktop = window.matchMedia('(min-width: 900px)').matches;
@@ -76,6 +77,21 @@ export function createEl(name, attributes = {}, content = '', parentEl = null) {
   return el;
 }
 
+async function buildLeftNav(main) {
+  const navMenuName = getMetadata('nav-menu');
+  if (navMenuName) {
+    document.body.classList.add('nav-menu');
+    const resp = await fetch(`/fragments/nav-menus/${navMenuName}.plain.html`);
+    if (resp.ok) {
+      const navMenuEl = await resp.text();
+      const leftRailEl = createEl('nav', {
+        class: 'left-rail',
+      }, navMenuEl);
+      document.body.insertBefore(leftRailEl, main);
+    }
+  }
+}
+
 /**
  * Decorates the main element.
  * @param {Element} main The main element
@@ -83,7 +99,7 @@ export function createEl(name, attributes = {}, content = '', parentEl = null) {
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main) {
   // hopefully forward compatible button decoration
-  decorateButtons(main);
+  //decorateButtons(main);
   decorateIcons(main);
   buildAutoBlocks(main);
   decorateSections(main);
@@ -102,6 +118,7 @@ async function loadEager(doc) {
     decorateMain(main);
     document.body.classList.add('appear');
     await waitForLCP(LCP_BLOCKS);
+    await buildLeftNav(main);
   }
 }
 
