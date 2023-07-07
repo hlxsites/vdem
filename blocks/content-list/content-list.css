@@ -44,6 +44,28 @@
     }
 }
 
+.content-list.bluebg {
+    grid-template-columns: repeat(1,minmax(0,1fr));
+}
+
+.content-list.bluebg > div {
+    border: 0;
+    background-color: #e7f6f8;
+}
+
+.content-list.bluebg > div a {
+    text-decoration: underline;
+}
+
+.content-list.graybg {
+    grid-template-columns: repeat(1,minmax(0,1fr));
+}
+
+.content-list.graybg > div {
+    border: 0;
+    background-color: #e6e6e6;
+}
+
 .content-list.bgimage div.with-image {
     min-height: 125px;
     background-blend-mode: overlay;
@@ -68,10 +90,6 @@
     border-top: 1px solid #3a3b3b;
     border-bottom: 1px solid #3a3b3b;
     background-color: #e6e6e6;
-}
-
-.content-list.files > div > div {
-    
 }
 
 .content-list.files h4 {
