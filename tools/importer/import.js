@@ -151,7 +151,7 @@ export default {
       cell.innerHTML = 'Table';
     });
 
-    const navMenuEl = document.querySelector('#nav_menu-2');
+    const navMenuEl = document.querySelector('.widget_nav_menu');
     if (navMenuEl) {
       console.log('Found Nav Menu');
       const navMenuTitleEl = navMenuEl.querySelector('h4');
