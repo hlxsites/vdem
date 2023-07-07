@@ -115,7 +115,6 @@
   text-decoration: none;
   color: #163963;
   font-weight: 500;
-  line-height: 14px;
   letter-spacing: 1px;
   font-style: normal;
 }
@@ -139,6 +138,7 @@
 .header nav ul ul>li a {
   margin-top: 15px;
   padding-left: 15px;
+  font-size: var(--heading-font-size-xs);
 }
 
 .header nav ul ul>li p {
@@ -224,7 +224,7 @@
     align-items: center;
     justify-content: flex-end;
     column-gap: 22px;
-    width: 50vw;
+    width: 60vw;
     height: 46px;
     padding: 20px 0;
     font-size: var(--body-font-size-xs);
@@ -245,11 +245,12 @@
     flex-wrap: wrap;
     justify-content: flex-start;
     position: absolute;
-    top: 130px;
+    top: 150px;
     right: 0;
     max-width: 1280px;
     min-height: 520px;
-    gap: 4px;
+    row-gap: 16px;
+    column-gap: 40px;
     padding-left: 100px;
     margin-left: auto;
     margin-right: auto;
@@ -260,26 +261,32 @@
   .header nav ul ul>li {
     position: relative;
     display: grid;
+    grid-template-columns: 32px 1fr;
     justify-self: flex-start;
     grid-template-areas:
       "icon link"
       "icon text";
-    width: 250px;
+    width: 300px;
     min-height: 50px;
     background-color: #fff;
   }
 
   .header nav ul ul>li img {
     grid-area: icon;
+    margin: 0;
   }
 
   .header nav ul ul>li a {
     grid-area: link;
+    margin-top: 0;
+    padding-left: 10px;
   }
 
   .header nav ul ul>li p {
     display: inline-block;
     grid-area: text;
+    padding-left: 10px;
+    width: 100%;
   }
 
   .header nav li a.expander {
