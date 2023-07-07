@@ -1,8 +1,8 @@
-.cta {
+.cta > div > div {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     color: #fff;
     background-color: #163963;
     text-align: center;
@@ -14,10 +14,6 @@
     color: #163963;
     padding: 10px;
     margin: 0;
-    font-size: var(--body-font-size-m);
+    font-size: var(--body-font-size-l);
+    border-radius: 3px;
 }
-
-.content-list h1, h2, h3, h4 {
-    border: 0;
-}
-

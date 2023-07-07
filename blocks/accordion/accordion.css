@@ -1,0 +1,93 @@
+main .accordion-container .accordion-wrapper {
+  padding: 15px;
+}
+
+main .accordion-container .accordion-wrapper .accordion {
+  color: #666;
+}
+
+main .accordion-container .accordion-wrapper .accordion a {
+  color: #163963;
+}
+
+main .accordion-container .accordion-wrapper .accordion :is(h2, h3, h4, h5) {
+  position: relative;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #393630;
+  background-color: #fbfbf9;
+  padding: 16px;
+  margin-top: 35px;
+  border-radius: 3px;
+  font-size: var(--heading-font-size-xs);
+}
+
+main .accordion-container .accordion-wrapper .accordion :is(h2, h3, h4, h5).showing {
+  border-bottom: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+main .accordion-container .accordion-wrapper .accordion :is(h2, h3, h4, h5)::after {
+  color: #000;
+  border-right: 1px solid currentcolor;
+  border-bottom: 1px solid currentcolor;
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  top: 50%;
+  right: 30px;
+  transform: rotate(45deg);
+}
+
+main .accordion-container .accordion-wrapper .accordion :is(h2, h3, h4, h5).showing::after {
+  transform: rotate(-135deg);
+}
+
+@media (min-width: 900px) {
+  main .accordion-container .accordion-wrapper .accordion :is(h2, h3, h4, h5) {
+    border: 0;
+    border-bottom: 1px solid #e6e6e6;
+    padding: 15px 0;
+    background-color: #fff;
+  }
+
+  main .accordion-container .accordion-wrapper .accordion :is(h2, h3, h4, h5).showing {
+    display: flex;
+    border-bottom: 2px solid #000;
+  }
+
+  main .accordion-container .accordion-wrapper .accordion :is(h2, h3, h4, h5) > * {
+    padding: 0;
+  }
+}
+
+main .accordion-container .accordion-wrapper .accordion .grouping {
+  display: none;
+  flex-direction: column;
+  border-width: 0 1px 1px;
+  border-style: solid;
+  border-color: #393630;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+main .accordion-container .accordion-wrapper .accordion .grouping > * {
+  padding: 0 33px;
+}
+
+@media (min-width: 900px) {
+  main .accordion-container .accordion-wrapper .accordion .grouping {
+    border: 0;
+    border-bottom: 1px solid #e6e6e6;
+  }
+
+  main .accordion-container .accordion-wrapper .accordion .grouping > * {
+    padding: 0;
+  }
+}
+
+main .accordion-container .accordion-wrapper .accordion .grouping.showing {
+  display: flex;
+}

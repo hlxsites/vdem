@@ -88,12 +88,12 @@ body.appear {
 }
 
 body header {
-  height: 402px;
+  height: 401px;
 }
 
 @media (min-width: 900px) {
   body header {
-    height: 255px;
+    height: 254px;
   }
 }
 
@@ -129,8 +129,6 @@ h6 {
   margin-top: 0;
   margin-bottom: .5em;
   scroll-margin: calc(var(--nav-height) + 1em);
-  width: 100%;
-  border-bottom: 2px solid black;
 }
 
 h1 {
@@ -146,7 +144,7 @@ h3 {
 }
 
 h4 {
-  font-size: var(--heading-font-size-m)
+  font-size: var(--heading-font-size-s)
 }
 
 h5 {
@@ -155,6 +153,19 @@ h5 {
 
 h6 {
   font-size: var(--heading-font-size-xs)
+}
+
+main div[class="section"] > .default-content-wrapper > :is(h1, h2, h3, h4) {
+  width: 100%;
+  border-bottom: 2px solid black;
+}
+
+main div[class="section"] > .default-content-wrapper > :is(h1, h2, h3, h4):has(em) {
+  border-bottom: 0;
+}
+
+main div[class="section"] > .default-content-wrapper > :is(h1, h2, h3, h4) > em {
+  font-style: normal;
 }
 
 p,
@@ -299,6 +310,20 @@ main .section {
 main .section.full-width {
   padding: 0;
   width: 100%;
+}
+
+main .section.darkgraybg {
+  background-color: #3a3b3b;
+  color: #fff;
+}
+
+main .section.bluebg {
+  background-color: #badaed;
+}
+
+main .section.darkbluebg {
+  background-color: #163963;
+  color: #fff;
 }
 
 .screen-reader-text {

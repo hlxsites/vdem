@@ -4,10 +4,6 @@
     grid-gap: 25px;
 }
 
-.content-list h1, h2, h3, h4 {
-    border: 0;
-}
-
 .content-list > div {
     display: flex;
     flex-direction: column;
