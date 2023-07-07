@@ -84,13 +84,13 @@
   padding: 20px;
   margin: 0;
   font-size: var(--body-font-size-s);
-
+  z-index: 100;
 }
 
 .header nav ul.visible {
   display: flex;
   position: absolute;
-  top: 86px;
+  top: 250px;
   left: 0;
   background-color: #fff;
 }
@@ -98,6 +98,7 @@
 .header nav ul ul {
   display: none;
   list-style: none;
+  z-index: 110;
 }
 
 .header nav ul ul.visible {
@@ -181,8 +182,6 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-
-
 /* Desktop */
 @media (min-width: 900px) {
   .header {
@@ -246,7 +245,7 @@
     flex-wrap: wrap;
     justify-content: flex-start;
     position: absolute;
-    top: 86px;
+    top: 130px;
     right: 0;
     max-width: 1280px;
     min-height: 520px;

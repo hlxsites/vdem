@@ -36,7 +36,7 @@ function createSingleRowBlock(name, contentEl) {
 }
 
 function createMultiRowBlock(name, contentEls) {
-  console.log('Block content', contentEls);
+  console.log('Multirow Block content', contentEls);
   const blockEl = createEl('table', {}, `
     <th>
       ${name}
@@ -45,7 +45,7 @@ function createMultiRowBlock(name, contentEls) {
   contentEls.forEach((contentEl) => {
     blockEl.append(createEl('tr', {}, `
       <td>
-        ${(typeof contentEl === 'string') ? contentEl : contentEl.outerHTML}
+        ${(typeof contentEl === 'string') ? contentEl : contentEl?.outerHTML}
       </td>
     `));
   });
@@ -142,12 +142,6 @@ export default {
       }
     });
 
-    // Create Header Sections
-    const headerEls = document.querySelectorAll('.et_pb_with_border h2');
-    headerEls.forEach((headerEl) => {
-      headerEl.before('---');
-    });
-
     const tableEls = document.querySelectorAll('table');
     tableEls.forEach((tableEl) => {
       console.log('Found Table');
@@ -193,8 +187,16 @@ export default {
       ctaEl.innerHTML = fragmentBlockEl.outerHTML;
     });
 
-    //Blue Info Title
-    
+    // // Blue Info Title
+    // const headerEl = document.querySelector('.et_pb_row_inner.et_pb_row_inner_1_tb_body');
+    // if (headerEl) {
+    //   const labelHTML = headerEl.querySelector('.dmach-acf-label')?.innerHTML;
+    //   const linkHTML = headerEl.querySelector('.linked_list_item')?.innerHTML;
+    //   if (labelHTML && linkHTML) {
+    //     headerEl.innerHTML = `<strong>${labelHTML} ${linkHTML}</strong>`;
+    //   }
+    // }
+
     // Content List Common
     const contentListCommonEls = document.querySelectorAll('.grid-posts.loop-grid');
     contentListCommonEls.forEach((contentListEl) => {
@@ -207,10 +209,37 @@ export default {
     // Content List Files
     const contentListFilesEls = document.querySelectorAll('.et_pb_de_mach_repeater');
     contentListFilesEls.forEach((contentListEl) => {
-      console.log('Found Content List Common: ');
+      console.log('Found Content List Files: ');
       const contentEls = contentListEl.querySelectorAll('.dmach-grid-item');
       const blockEl = createMultiRowBlock('Content List (Files)', contentEls);
       contentListEl.outerHTML = blockEl.outerHTML;
+    });
+
+    // Section Nav
+    const sectionNavEl = document.querySelector('.et_pb_section.et_pb_section_1_tb_body.et_pb_with_background.et_section_regular');
+    if (sectionNavEl) {
+      const contentEl = sectionNavEl.querySelector('div.et_pb_column.et_pb_column_1_2.et_pb_column_0_tb_body.et_pb_css_mix_blend_mode_passthrough');
+      const menuListEl = sectionNavEl.querySelector('.et_pb_row--with-menu ul');
+      sectionNavEl.outerHTML = createMultiRowBlock('Section Nav', [contentEl, menuListEl]).outerHTML;
+      document.querySelector('div.et_pb_section.et_pb_section_3_tb_body.et_pb_with_background.et_section_regular')?.remove();
+    }
+
+    // Content List Gallery
+    const contentListGalleryEls = document.querySelectorAll('.et_pb_module.et_pb_gallery');
+    contentListGalleryEls.forEach((contentListEl) => {
+      console.log('Found Content List Gallery: ');
+      const contentEls = contentListEl.querySelectorAll('.et_pb_gallery_item');
+      const blockEl = createMultiRowBlock('Content List (Gallery)', contentEls);
+      contentListEl.outerHTML = blockEl.outerHTML;
+      contentListEl.remove(); //For now...
+    });
+
+    // Create Header Sections
+    const headerEls = document.querySelectorAll('h2');
+    headerEls.forEach((headerEl) => {
+      if (!headerEl.closest('table')) {
+        headerEl.before('---');
+      }
     });
 
     // create the metadata block and append it to the main element

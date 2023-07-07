@@ -1,0 +1,23 @@
+.cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background-color: #163963;
+    text-align: center;
+    padding: 40px 60px;
+}
+
+.cta .button-container {
+    padding: 0;
+    margin: 0;
+}
+
+.cta .button.primary {
+    background-color: #fff;
+    color: #163963;
+    margin: 0;
+    font-size: var(--body-font-size-m);
+}
+

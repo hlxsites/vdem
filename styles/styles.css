@@ -31,7 +31,7 @@
   --overlay-background-color: #eee;
   --highlight-background-color: #ccc;
   --dark-background-color: #163963;
-  --text-color: #000;
+  --text-color: #3A3B3B;
 
   /* fonts */
   --body-font-family: 'Public Sans', helvetica, arial, lucida, sans-serif;
@@ -93,8 +93,7 @@ body.appear {
 }
 
 main {
-  padding-left: 24px;
-  padding-right: 24px;
+  padding: 0;
 }
 
 a:any-link {
@@ -283,7 +282,12 @@ main img {
 }
 
 main .section {
-  padding: 30px 16px;
+  padding: 30px;
+}
+
+main .section.full-width {
+  padding: 0;
+  width: 100%;
 }
 
 .screen-reader-text {
