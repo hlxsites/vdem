@@ -1,0 +1,36 @@
+.media-asset-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.media-asset-info .actions {
+  display: flex;
+  flex-direction: column;
+}
+
+.media-asset-info .actions a {
+  color: #fff;
+  font-size: var(--body-font-size-m);
+}
+
+.media-asset-info .actions .download {
+  background-color: var(--dark-background-color);
+}
+
+
+@media (min-width: 900px) {
+  .media-asset-info {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 75px;
+  }
+
+  .media-asset-info p {
+    width: 70vw;
+  }
+
+  .media-asset-info .actions {
+    width: 40vw;
+  }
+}

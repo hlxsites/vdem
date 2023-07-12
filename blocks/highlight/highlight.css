@@ -1,5 +1,58 @@
 .highlight {
   width: 100%;
-  padding: 10px 5px;
+  padding: 10px;
   background-color: #badaed;
+
+  --green: #38b453;
+  --green-bg: #f1f9f3;
+  --yellow: #f6cb2a;
+  --yellow-bg: #fefbf1;
+  --orange: #d98427;
+  --orange-bg: #faf0e7;
+  --red: #de2326;
+  --red-bg: #fdefef;
+
+}
+
+.highlight.lit {
+  background-color: #f5f5f5;
+  border-left-style: solid;
+  border-left-width: 10px;
+  border-color: #14539a;
+}
+
+.highlight.green {
+  border-left-color: var(--green);
+  background-color: var(--green-bg);
+}
+
+.highlight.green :is(h2, h3, h4, h5) {
+  color: var(--green);
+}
+
+.highlight.yellow {
+  border-left-color: var(--yellow);
+  background-color: var(--yellow-bg);
+}
+
+.highlight.yellow :is(h2, h3, h4, h5) {
+  color: var(--yellow);
+}
+
+.highlight.orange {
+  border-left-color: var(--orange);
+  background-color: var(--orange-bg);
+}
+
+.highlight.orange :is(h2, h3, h4, h5) {
+  color: var(--orange);
+}
+
+.highlight.red {
+  border-left-color: var(--red);
+  background-color: var(--red-bg);
+}
+
+.highlight.red :is(h2, h3, h4, h5) {
+  color: var(--red);
 }

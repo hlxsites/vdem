@@ -160,11 +160,11 @@ main div[class="section"] > .default-content-wrapper > :is(h1, h2, h3, h4) {
   border-bottom: 2px solid black;
 }
 
-main div[class="section"] > .default-content-wrapper > :is(h1, h2, h3, h4):has(em) {
+main div.section > .default-content-wrapper > :is(h1, h2, h3, h4):has(em) {
   border-bottom: 0;
 }
 
-main div[class="section"] > .default-content-wrapper > :is(h1, h2, h3, h4) > em {
+main div.section > .default-content-wrapper > :is(h1, h2, h3, h4) > em {
   font-style: normal;
 }
 
@@ -304,7 +304,11 @@ main img {
 }
 
 main .section {
-  padding: 30px;
+  padding: 15px 32px 0;
+}
+
+main .section:first-of-type {
+  padding-top: 30px;
 }
 
 main .section.full-width {
@@ -315,15 +319,18 @@ main .section.full-width {
 main .section.darkgraybg {
   background-color: #3a3b3b;
   color: #fff;
+  padding-bottom: 15px;
 }
 
 main .section.bluebg {
   background-color: #badaed;
+  padding-bottom: 15px;
 }
 
 main .section.darkbluebg {
   background-color: #163963;
   color: #fff;
+  padding-bottom: 15px;
 }
 
 .screen-reader-text {
@@ -337,12 +344,6 @@ main .section.darkbluebg {
   position: absolute;
   width: 1px;
   word-wrap: normal;
-}
-
-@media (min-width: 600px) {
-  main .section {
-    padding: 30px 32px;
-  }
 }
 
 @media (min-width: 900px) {
