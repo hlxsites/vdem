@@ -1,0 +1,4 @@
+.section a.download.button {
+  background-color: var(--dark-background-color);
+  font-size: var(--body-font-size-m);
+}

@@ -10,8 +10,12 @@ footer .footer {
   margin: auto;
 }
 
-  footer .footer p {
+footer .footer p {
   margin: 0;
+}
+
+footer .footer a {
+  color: #fff;
 }
 
 @media (min-width: 900px) {

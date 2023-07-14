@@ -133,100 +133,141 @@ export default {
       'img[height="1"]',
     ]);
 
+
+
+    // if (url.includes('/media-assets/')) { // Image Assets section
+    //   const assetButtonEl = document.querySelector('.design-asset-button');
+    //   const headerEl = document.querySelector('h1');
+    //   document.querySelector('[href="https://www.vaemergency.gov/media-assets/"]')?.remove();
+    //   const imagePath = assetButtonEl.href;
+    //   const imageExt = imagePath.substring(imagePath?.lastIndexOf('.'));
+    //   assetButtonEl.remove();
+    //   const imageName = WebImporter.FileUtils.sanitizeFilename(headerEl.textContent) + imageExt;
+    //   console.log(imageName);
+    // }
+
+    if (url.includes('/attachments/')) { // File Uploads section
+      const navMenuEl = document.querySelector('.widget_nav_menu');
+      navMenuEl?.remove();
+      const headerEl = document.querySelector('h1');
+      const fileLinkEl = document.querySelector('.et_pb_button');
+      const noteEl = document.querySelector('.dmach-acf-value');
+      const filePath = fileLinkEl.href;
+      const u = new URL(filePath, url);
+      const linkPath = WebImporter.FileUtils.sanitizePath(u.pathname);
+      console.log('Imported File Path', linkPath);
+      console.log('Remote File Path', u.toString());
+      fileDefs.push({
+        path: linkPath,
+        from: u.toString(),
+      });
+      fileLinkEl.href = linkPath;
+      const highlightEl = document.querySelector('.dmach-acf-value');
+      if (highlightEl && (fileLinkEl.compareDocumentPosition(highlightEl) & Node.DOCUMENT_POSITION_PRECEDING)) {
+        const cells = [
+          ['Highlight'],
+          [highlightEl.innerHTML],
+        ];
+        const blockEl = WebImporter.DOMUtils.createTable(cells, document);
+        highlightEl.replaceWith(blockEl);
+      }
+    }
+
     // Fix Links
     const linkEls = document.querySelectorAll('a');
     linkEls.forEach((link) => {
       const { href } = link;
       if (href.startsWith('/')) {
-        link.href = `https://www.vaemergency.gov${href}`;
+        // link.href = `https://www.vaemergency.gov${href}`;
+        link.href = `https://main--vdem--hlxsites.hlx.page${href}`;
       }
     });
 
-    if (url.includes('/media-assets/')) {
-      const assetButtonEl = document.querySelector('.design-asset-button');
-      const headerEl = document.querySelector('h1');
-      document.querySelector('[href="https://www.vaemergency.gov/media-assets/"]')?.remove();
-      const imagePath = assetButtonEl.href;
-      const imageExt = imagePath.substring(imagePath?.lastIndexOf('.'));
-      assetButtonEl.remove();
-      const imageName = WebImporter.FileUtils.sanitizeFilename(headerEl.textContent) + imageExt;
-      console.log(imageName);
-    }
+    // Convert Tables into Table Block
+    const tableEls = document.querySelectorAll('table');
+    tableEls.forEach((tableEl) => {
+      console.log('Found Table');
+      const header = tableEl.createTHead();
+      const row = header.insertRow(0);
+      const cell = row.insertCell(0);
+      cell.innerHTML = 'Table';
+    });
 
-    // const tableEls = document.querySelectorAll('table');
-    // tableEls.forEach((tableEl) => {
-    //   console.log('Found Table');
-    //   const header = tableEl.createTHead();
-    //   const row = header.insertRow(0);
-    //   const cell = row.insertCell(0);
-    //   cell.innerHTML = 'Table';
-    // });
-
-    // const navMenuEl = document.querySelector('.widget_nav_menu');
-    // if (navMenuEl) {
-    //   console.log('Found Nav Menu');
-    //   const navMenuTitleEl = navMenuEl.querySelector('h4');
-    //   const navMenuFragment = createFragment('NavMenu', navMenuEl, true);
-    //   const navMenuFragmentPath = `/fragments/nav-menus/${WebImporter.FileUtils.sanitizeFilename(navMenuTitleEl.textContent)}`;
-    //   console.log('navMenuFrag: ', navMenuFragment);
-    //   fileDefs.push({
-    //     element: navMenuFragment,
-    //     path: navMenuFragmentPath,
-    //   });
-    //   navMenuEl.remove();
+    // if (url.includes('/updates/') || url.includes('/resources/')) { // Updates & Resources section
+    //   const highlightEl = document.querySelector('.dmach-acf-value');
+    //   const cells = [
+    //     ['Highlight'],
+    //     [highlightEl.innerHTML],
+    //   ];
+    //   const blockEl = WebImporter.DOMUtils.createTable(cells, document);
+    //   highlightEl.replaceWith(blockEl);
     // }
 
-    // const ctaEls = document.querySelectorAll('.et_pb_promo');
-    // ctaEls?.forEach((ctaEl) => {
-    //   console.log('Found a CTA fragment: ', ctaEl.outerHTML);
-    //   const ctaTitleEl = ctaEl.querySelector('h2');
-    //   const ctaTextEl = ctaEl.querySelector('p');
-    //   const ctaLinkEl = ctaEl.querySelector('a');
-    //   const contentEl = document.createElement('div');
-    //   if (ctaTitleEl) { contentEl.append(ctaTitleEl); }
-    //   if (ctaTextEl) { contentEl.append(ctaTextEl); }
-    //   if (ctaLinkEl) { contentEl.append(ctaLinkEl); }
-    //   const ctaFragment = createFragment('CTA', contentEl);
-    //   const ctaPath = `/fragments/cta/${WebImporter.FileUtils.sanitizeFilename(ctaTitleEl.textContent)}`;
-    //   console.log('ctaEl: ', ctaFragment);
-    //   fileDefs.push({
-    //     element: ctaFragment,
-    //     path: ctaPath,
-    //   });
-    //   const fragmentBlockEl = createSingleRowBlock('Fragment', `https://main--vdem--hlxsites.hlx.page${ctaPath}`);
-    //   console.log('fragmentBlockEl', fragmentBlockEl);
-    //   ctaEl.innerHTML = fragmentBlockEl.outerHTML;
-    // });
+    const navMenuEl = document.querySelector('.widget_nav_menu');
+    if (navMenuEl) {
+      console.log('Found Nav Menu');
+      const navMenuTitleEl = navMenuEl.querySelector('h4');
+      const navMenuFragment = createFragment('NavMenu', navMenuEl, true);
+      const navMenuFragmentPath = `/fragments/nav-menus/${WebImporter.FileUtils.sanitizeFilename(navMenuTitleEl.textContent)}`;
+      console.log('navMenuFrag: ', navMenuFragment);
+      fileDefs.push({
+        element: navMenuFragment,
+        path: navMenuFragmentPath,
+      });
+      navMenuEl.remove();
+    }
 
-    // // // Blue Info Title
-    // // const headerEl = document.querySelector('.et_pb_row_inner.et_pb_row_inner_1_tb_body');
-    // // if (headerEl) {
-    // //   const labelHTML = headerEl.querySelector('.dmach-acf-label')?.innerHTML;
-    // //   const linkHTML = headerEl.querySelector('.linked_list_item')?.innerHTML;
-    // //   if (labelHTML && linkHTML) {
-    // //     headerEl.innerHTML = `<strong>${labelHTML} ${linkHTML}</strong>`;
-    // //   }
-    // // }
+    const ctaEls = document.querySelectorAll('.et_pb_promo');
+    ctaEls?.forEach((ctaEl) => {
+      console.log('Found a CTA fragment: ', ctaEl.outerHTML);
+      const ctaTitleEl = ctaEl.querySelector('h2');
+      const ctaTextEl = ctaEl.querySelector('p');
+      const ctaLinkEl = ctaEl.querySelector('a');
+      const contentEl = document.createElement('div');
+      if (ctaTitleEl) { contentEl.append(ctaTitleEl); }
+      if (ctaTextEl) { contentEl.append(ctaTextEl); }
+      if (ctaLinkEl) { contentEl.append(ctaLinkEl); }
+      const ctaFragment = createFragment('CTA', contentEl);
+      const ctaPath = `/fragments/cta/${WebImporter.FileUtils.sanitizeFilename(ctaTitleEl.textContent)}`;
+      console.log('ctaEl: ', ctaFragment);
+      fileDefs.push({
+        element: ctaFragment,
+        path: ctaPath,
+      });
+      const fragmentBlockEl = createSingleRowBlock('Fragment', `https://main--vdem--hlxsites.hlx.page${ctaPath}`);
+      console.log('fragmentBlockEl', fragmentBlockEl);
+      ctaEl.innerHTML = fragmentBlockEl.outerHTML;
+    });
 
-    // // Content List Common
-    // const contentListCommonEls = document.querySelectorAll('.grid-posts.loop-grid');
-    // contentListCommonEls.forEach((contentListEl) => {
-    //   console.log('Found Content List Common: ');
-    //   const contentEls = contentListEl.querySelectorAll('.grid-item-cont');
-    //   const blockEl = createMultiRowBlock('Content List', contentEls);
-    //   contentListEl.outerHTML = blockEl.outerHTML;
-    // });
+    // // Blue Info Title
+    // const headerEl = document.querySelector('.et_pb_row_inner.et_pb_row_inner_1_tb_body');
+    // if (headerEl) {
+    //   const labelHTML = headerEl.querySelector('.dmach-acf-label')?.innerHTML;
+    //   const linkHTML = headerEl.querySelector('.linked_list_item')?.innerHTML;
+    //   if (labelHTML && linkHTML) {
+    //     headerEl.innerHTML = `<strong>${labelHTML} ${linkHTML}</strong>`;
+    //   }
+    // }
 
-    // // Content List Files
-    // const contentListFilesEls = document.querySelectorAll('.et_pb_de_mach_repeater');
-    // contentListFilesEls.forEach((contentListEl) => {
-    //   console.log('Found Content List Files: ');
-    //   const contentEls = contentListEl.querySelectorAll('.dmach-grid-item');
-    //   const blockEl = createMultiRowBlock('Content List (Files)', contentEls);
-    //   contentListEl.outerHTML = blockEl.outerHTML;
-    // });
+    // Content List Common
+    const contentListCommonEls = document.querySelectorAll('.grid-posts.loop-grid');
+    contentListCommonEls.forEach((contentListEl) => {
+      console.log('Found Content List Common: ');
+      const contentEls = contentListEl.querySelectorAll('.grid-item-cont');
+      const blockEl = createMultiRowBlock('Content List', contentEls);
+      contentListEl.outerHTML = blockEl.outerHTML;
+    });
 
-    // // Section Nav
+    // Content List Files
+    const contentListFilesEls = document.querySelectorAll('.et_pb_de_mach_repeater');
+    contentListFilesEls.forEach((contentListEl) => {
+      console.log('Found Content List Files: ');
+      const contentEls = contentListEl.querySelectorAll('.dmach-grid-item');
+      const blockEl = createMultiRowBlock('Content List (Files)', contentEls);
+      contentListEl.outerHTML = blockEl.outerHTML;
+    });
+
+    // Section Nav
     // const sectionNavEl = document.querySelector('.et_pb_section.et_pb_section_1_tb_body.et_pb_with_background.et_section_regular');
     // if (sectionNavEl) {
     //   const contentEl = sectionNavEl.querySelector('div.et_pb_column.et_pb_column_1_2.et_pb_column_0_tb_body.et_pb_css_mix_blend_mode_passthrough');
@@ -235,23 +276,23 @@ export default {
     //   document.querySelector('div.et_pb_section.et_pb_section_3_tb_body.et_pb_with_background.et_section_regular')?.remove();
     // }
 
-    // // Content List Gallery
-    // const contentListGalleryEls = document.querySelectorAll('.et_pb_module.et_pb_gallery');
-    // contentListGalleryEls.forEach((contentListEl) => {
-    //   console.log('Found Content List Gallery: ');
-    //   const contentEls = contentListEl.querySelectorAll('.et_pb_gallery_item');
-    //   const blockEl = createMultiRowBlock('Content List (Gallery)', contentEls);
-    //   contentListEl.outerHTML = blockEl.outerHTML;
-    //   contentListEl.remove(); // For now...
-    // });
+    // Content List Gallery
+    const contentListGalleryEls = document.querySelectorAll('.et_pb_module.et_pb_gallery');
+    contentListGalleryEls.forEach((contentListEl) => {
+      console.log('Found Content List Gallery: ');
+      const contentEls = contentListEl.querySelectorAll('.et_pb_gallery_item');
+      const blockEl = createMultiRowBlock('Content List (Gallery)', contentEls);
+      contentListEl.outerHTML = blockEl.outerHTML;
+      contentListEl.remove(); // For now...
+    });
 
-    // // Create Header Sections
-    // const headerEls = document.querySelectorAll('h2');
-    // headerEls.forEach((headerEl) => {
-    //   if (!headerEl.closest('table')) {
-    //     headerEl.before('---');
-    //   }
-    // });
+    // Create Header Sections
+    const headerEls = document.querySelectorAll('h2');
+    headerEls.forEach((headerEl) => {
+      if (!headerEl.closest('table')) {
+        headerEl.before('---');
+      }
+    });
 
     // create the metadata block and append it to the main element
     createMetadata(main, document);

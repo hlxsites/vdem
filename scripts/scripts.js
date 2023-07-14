@@ -39,7 +39,7 @@ function buildHeroBlock(main) {
  */
 function buildAutoBlocks(main) {
   try {
-    //buildHeroBlock(main);
+    // buildHeroBlock(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
@@ -67,6 +67,10 @@ export function createEl(name, attributes = {}, content = '', parentEl = null) {
   if (content) {
     if (typeof content === 'string') {
       el.innerHTML = content;
+    } else if (content instanceof NodeList) {
+      content.forEach((itemEl) => {
+        el.append(itemEl);
+      });
     } else {
       el.append(content);
     }

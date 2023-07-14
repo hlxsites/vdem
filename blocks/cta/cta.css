@@ -17,3 +17,9 @@
     font-size: var(--body-font-size-l);
     border-radius: 3px;
 }
+
+.cta a:has(strong) {
+    color: #F6B527;
+    text-decoration: underline;
+    background: none;
+}

@@ -333,6 +333,22 @@ main .section.darkbluebg {
   padding-bottom: 15px;
 }
 
+@media (min-width: 900px) {
+  main .section.columns {
+    display: grid;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    grid-gap: 25px;
+    width: 70vw;
+    margin: 0 auto;
+  }
+
+  main .section.columns > div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
 .screen-reader-text {
   border: 0;
   clip: rect(1px, 1px, 1px, 1px);

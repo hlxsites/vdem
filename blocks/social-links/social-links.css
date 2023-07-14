@@ -1,0 +1,17 @@
+.social-links > div:first-child {
+  background-color: #6cc5ea;
+  color: #163963;
+  text-align: center;
+  padding: 40px;
+}
+
+.social-links > div:nth-child(2) {
+  background-color: #fff;
+  text-align: center;
+  padding: 20px;
+}
+
+.social-links > div:nth-child(2) a {
+  padding: 10px;
+}
+
