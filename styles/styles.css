@@ -224,7 +224,7 @@ button {
   cursor: pointer;
   color: var(--background-color);
   background-color: var(--link-color);
-  margin: 16px 0;
+  margin: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -242,6 +242,11 @@ button:disabled,
 button:disabled:hover {
   background-color: var(--overlay-background-color);
   cursor: unset;
+}
+
+a.button.primary,
+button.primary {
+  margin: 16px 0;
 }
 
 a.button.secondary,
@@ -334,18 +339,19 @@ main .section.darkbluebg {
 }
 
 @media (min-width: 900px) {
-  main .section.columns {
-    display: grid;
-    grid-template-columns: repeat(2,minmax(0,1fr));
-    grid-gap: 25px;
+  main .section.as-columns {
+    column-count: 2;    
+    column-gap: 30px;
     width: 70vw;
     margin: 0 auto;
   }
 
-  main .section.columns > div {
+  main .section.as-columns > div {
     display: flex;
     flex-direction: column;
     width: 100%;
+    break-inside: avoid-column;
+    margin-bottom: 25px;
   }
 }
 
