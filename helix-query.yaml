@@ -32,5 +32,5 @@ indices:
         select: head > meta[property="og:title"]
         value: attribute(el, "content")
       month:
-        select: body > main > div:nth-child(1) > div > p 
+        select: main > div:nth-child(1) > div > p 
         value: textContent(el)
