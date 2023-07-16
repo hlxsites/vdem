@@ -9,6 +9,13 @@ export default function decorate(blockEl) {
   const contentEl = blockEl.querySelector('div');
   contentEl.classList.add('content-row');
   const menuListEl = blockEl.querySelector('ul');
+  const linkEls = menuListEl.querySelectorAll('a');
+  linkEls.forEach((linkEl) => {
+    const href = new URL(linkEl.href);
+    if (href.pathname === location.pathname) {
+      linkEl.classList.add('active');
+    }
+  });
   const menuRowEl = menuListEl.parentElement.parentElement;
   menuRowEl.classList.add('menu-row');
   const hamburgerRowEl = createEl('div', {
