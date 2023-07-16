@@ -7,9 +7,10 @@ export default async function decorate(doc) {
   sectionEl.classList.add('media-asset-info');
   const headerEl = sectionEl.querySelector('h1');
   const title = headerEl.textContent;
-  const pdfLinkEl = sectionEl.querySelector('a[href$="pdf"]');
+  const fileLinkEl = sectionEl.querySelector('a');
+  if (fileLinkEl) { fileLinkEl.remove(); }
   const imageEl = sectionEl.querySelector('img');
-  const href = (pdfLinkEl) ? pdfLinkEl.href : imageEl.src.split('?')[0];
+  const href = (fileLinkEl) ? fileLinkEl.href : imageEl.src.split('?')[0];
   const ext = href.split('.').pop();
   const actionsEl = createEl('div', {
     class: 'actions',

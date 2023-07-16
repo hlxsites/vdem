@@ -3,10 +3,6 @@
   flex-direction: column;
 }
 
-.media-asset-info p:has(a[href$="pdf"]:not(.button)) {
-  display: none;
-}
-
 .media-asset-info .actions {
   display: flex;
   flex-direction: column;

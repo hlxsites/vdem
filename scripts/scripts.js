@@ -95,7 +95,7 @@ export async function getIndex(indexURL = '/query-index.json') {
         }
       });
     };
-    indexObj.getEntries = function (rootPath) {
+    indexObj.getEntries = function (rootPath = '/') {
       const entries = [];
       indexObj.data.forEach((entry) => {
         if (entry.path.startsWith(rootPath)) {
