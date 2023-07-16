@@ -324,12 +324,20 @@ main .section.full-width {
 main .section.darkgraybg {
   background-color: #3a3b3b;
   color: #fff;
-  padding-bottom: 15px;
 }
 
 main .section.bluebg {
   background-color: #badaed;
-  padding-bottom: 15px;
+}
+
+main .section.lightbluebg {
+  color: #fff;
+  background-color: #6cc5ea;
+}
+
+main .section:is(.darkgraybg, .bluebg, .lightbluebg) .button.primary {
+  color: #fff;
+  background-color: var(--dark-background-color);
 }
 
 main .section.darkbluebg {
