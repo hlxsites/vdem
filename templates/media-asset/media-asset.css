@@ -3,13 +3,14 @@
   flex-direction: column;
 }
 
-.media-asset-info a[href$="pdf"]:not(.button) {
-  visibility: hidden;
+.media-asset-info p:has(a[href$="pdf"]:not(.button)) {
+  display: none;
 }
 
 .media-asset-info .actions {
   display: flex;
   flex-direction: column;
+  row-gap: 40px;
 }
 
 .media-asset-info .actions a {
@@ -21,6 +22,9 @@
   background-color: var(--dark-background-color);
 }
 
+.media-asset-info .actions .return {
+  margin-bottom: 50px;
+}
 
 @media (min-width: 900px) {
   .media-asset-info {

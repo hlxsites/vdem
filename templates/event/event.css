@@ -1,0 +1,32 @@
+body {
+  background-color: #f9f9f9;
+}
+
+.event .section:first-child {
+  background-color: #badaed;
+  padding: 30px 0;
+}
+
+.event .section:first-child h1 {
+  border: 0;
+  font-size: var(--heading-font-size-xl);
+}
+
+.event .section:first-child p {
+  text-transform: uppercase;
+}
+
+.event .content-list {
+  grid-template-columns: repeat(3, minmax(0, 1fr)); 
+}
+
+.event .content-list > div {
+  border: 0;
+  justify-content: flex-start;
+  background-color: #fff;
+  padding: 30px;
+}
+
+.event h4 {
+  text-transform: uppercase;
+}

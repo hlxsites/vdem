@@ -82,6 +82,33 @@ function decorateButtons(element) {
   });
 }
 
+export async function getIndex(indexURL = '/query-index.json') {
+  let indexObj;
+  try {
+    const resp = await fetch(indexURL);
+    const indexJSON = JSON.stringify(await resp.json());
+    indexObj = await JSON.parse(indexJSON);
+    indexObj.getEntry = function (basePath) {
+      indexObj.data.forEach((entry) => {
+        if (basePath === entry.path) {
+          return entry;
+        }
+      });
+    };
+    indexObj.getEntries = function (rootPath) {
+      const entries = [];
+      indexObj.data.forEach((entry) => {
+        if (entry.path.startsWith(rootPath)) {
+          entries.push(entry);
+        }
+      });
+      return entries;
+    };
+  } catch (error) {
+    console.error('Fetching Index failed', error);
+  }
+  return indexObj;
+}
 
 export function createEl(name, attributes = {}, content = '', parentEl = null) {
   const el = document.createElement(name);
