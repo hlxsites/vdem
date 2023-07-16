@@ -1,3 +1,6 @@
-.break-wrapper {
+main .section.as-columns .break-wrapper {
+  max-height: 0;
+  margin: 0;
   break-before: column;
+  break-inside: avoid;
 }
