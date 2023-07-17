@@ -326,6 +326,10 @@ main .section.darkgraybg {
   color: #fff;
 }
 
+main .section.graybg {
+  background-color: #f9f9f9;
+}
+
 main .section.bluebg {
   background-color: #badaed;
 }
