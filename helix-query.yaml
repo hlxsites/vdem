@@ -34,3 +34,17 @@ indices:
       month:
         select: main > div:nth-child(1) > p 
         value: textContent(el)
+  updates:
+    include:
+      - '/updates/**'
+    target: /updates/query-index.xlsx
+    properties:
+      title:
+        select: head > meta[property="og:title"]
+        value: attribute(el, "content")
+      publishtime:
+        select: head > meta[name="publishtime"]
+        value: attribute(el, "content")
+      lastModified:
+        select: none
+        value: parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss GMT")
