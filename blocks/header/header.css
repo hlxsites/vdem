@@ -17,6 +17,7 @@
 .header #agency-bar {
   width: 100%;
   height: 136px;
+  z-index: 150;
 }
 
 .header nav {

@@ -25,6 +25,14 @@ export default async function decorate(block) {
 
     block.append(nav);
 
+    const logoImageEl = nav.querySelector('img');
+    if (logoImageEl) {
+      const logoLinkEl = createEl('a', {
+        href: '/',
+      }, logoImageEl);
+      nav.prepend(logoLinkEl);
+    }
+
     const subMenuEls = nav.querySelectorAll('ul>li>ul');
     subMenuEls.forEach((subMenuEl) => {
       const menuLinkEl = subMenuEl.closest('li').querySelector('a');
