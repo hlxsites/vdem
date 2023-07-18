@@ -110,6 +110,23 @@ export async function getIndex(indexURL = '/query-index.json') {
   return indexObj;
 }
 
+/**
+ * Removes any trailing slashes that might be inside old links
+ */
+function cleanLinks() {
+  const linkEls = document.querySelectorAll('a');
+  linkEls.forEach((link) => {
+    try {
+      const { href } = link;
+      if (href.endsWith('/') && window.location.hostname === (new URL(href).hostname)) {
+        link.href = href.substring(0, href.lastIndexOf('/'));
+      }
+    } catch (e) {
+      //
+    }
+  });
+}
+
 export function createEl(name, attributes = {}, content = '', parentEl = null) {
   const el = document.createElement(name);
 
@@ -155,6 +172,7 @@ async function buildLeftNav(main) {
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main) {
   // hopefully forward compatible button decoration
+  cleanLinks();
   decorateButtons(main);
   decorateIcons(main);
   buildAutoBlocks(main);
