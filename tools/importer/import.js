@@ -133,18 +133,16 @@ export default {
       'img[height="1"]',
     ]);
 
-
-
-    // if (url.includes('/media-assets/')) { // Image Assets section
-    //   const assetButtonEl = document.querySelector('.design-asset-button');
-    //   const headerEl = document.querySelector('h1');
-    //   document.querySelector('[href="https://www.vaemergency.gov/media-assets/"]')?.remove();
-    //   const imagePath = assetButtonEl.href;
-    //   const imageExt = imagePath.substring(imagePath?.lastIndexOf('.'));
-    //   assetButtonEl.remove();
-    //   const imageName = WebImporter.FileUtils.sanitizeFilename(headerEl.textContent) + imageExt;
-    //   console.log(imageName);
-    // }
+    if (url.includes('/media-assets/')) { // Image Assets section
+      const assetButtonEl = document.querySelector('.design-asset-button');
+      const headerEl = document.querySelector('h1');
+      document.querySelector('[href$="/media-assets/"]')?.remove();
+      const imagePath = assetButtonEl.href;
+      const imageExt = imagePath.substring(imagePath?.lastIndexOf('.'));
+      assetButtonEl.remove();
+      const imageName = WebImporter.FileUtils.sanitizeFilename(headerEl.textContent) + imageExt;
+      console.log(imageName);
+    }
 
     if (url.includes('/attachments/')) { // File Uploads section
       const navMenuEl = document.querySelector('.widget_nav_menu');
@@ -183,6 +181,26 @@ export default {
       }
     });
 
+    if (url.includes('/preparedness_events/') || url.includes('/preparedness-events/')) { // Events section
+      document.querySelectorAll('.et_pb_button.show_modal')?.forEach((modelButtonEl) => {
+        modelButtonEl.remove();
+      });
+      document.querySelectorAll('.dmach_tax_social-media-graphic')?.forEach((tagEl) => {
+        tagEl.remove();
+      });
+      document.querySelectorAll('.dmach_tax_publication')?.forEach((tagEl) => {
+        tagEl.remove();
+      });
+      document.querySelectorAll('.dmach-acf-label')?.forEach((tagEl) => {
+        const labelText = tagEl.textContent;
+        tagEl.innerHTML = `<strong>${labelText}</strong>`;
+      });
+
+      const titleCardEl = document.querySelector('div.et_pb_section.et_pb_section_0_tb_body.et_pb_with_background.et_section_regular');
+      titleCardEl.after(document.createElement('hr'));
+      document.querySelector('[href$="/prepare/preparedness-calendar/"]').remove();
+    }
+
     // Convert Tables into Table Block
     const tableEls = document.querySelectorAll('table');
     tableEls.forEach((tableEl) => {
@@ -193,15 +211,17 @@ export default {
       cell.innerHTML = 'Table';
     });
 
-    // if (url.includes('/updates/') || url.includes('/resources/')) { // Updates & Resources section
-    //   const highlightEl = document.querySelector('.dmach-acf-value');
-    //   const cells = [
-    //     ['Highlight'],
-    //     [highlightEl.innerHTML],
-    //   ];
-    //   const blockEl = WebImporter.DOMUtils.createTable(cells, document);
-    //   highlightEl.replaceWith(blockEl);
-    // }
+    if (url.includes('/updates/') || url.includes('/resources/')) { // Updates & Resources section
+      const highlightEl = document.querySelector('.dmach-acf-value');
+      if (highlightEl) {
+        const cells = [
+          ['Highlight'],
+          [highlightEl.innerHTML],
+        ];
+        const blockEl = WebImporter.DOMUtils.createTable(cells, document);
+        highlightEl.replaceWith(blockEl);
+      }
+    }
 
     const navMenuEl = document.querySelector('.widget_nav_menu');
     if (navMenuEl) {

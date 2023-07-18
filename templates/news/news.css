@@ -1,0 +1,22 @@
+.news-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.news-list .news-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  border: 2px solid #e6e6e6;
+  padding: 35px 10px;
+}
+
+.news-list .news-item a.button {
+  color: #fff;
+  background-color: var(--dark-background-color);
+  font-size: var(--body-font-size-m);
+}

@@ -42,18 +42,4 @@ export default async function decorate(doc) {
       `, eventsEl);
     });
   });
-
-
-  // events.forEach((event) => {
-  //   createEl('div', {
-  //     class: 'event',
-  //   }, `
-  //     <div class="preview">  
-  //       <h2>${event.title}</h2>
-  //     </div>
-  //     <a href="${event.path}" class="primary button">
-  //       Download
-  //     </a>
-  //   `, eventListEl);
-  // });
 }
