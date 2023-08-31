@@ -42,16 +42,29 @@ createEl('script', {
 }, '', document.head);
 
 createEl('script', {
-  src: 'https://www.googletagmanager.com/gtag/js?id=G-N8KZTN12K6&l=beehiveDataLayer&cx=c',
+  src: 'https://www.googletagmanager.com/gtag/js?id=G-Z39YF2LV3B',
   type: 'text/javascript',
   async: true,
 }, '', document.head);
 
-createEl('script', {
-  src: 'https://www.googletagmanager.com/gtag/js?id=UA-115750224-1&l=beehiveDataLayer',
-  type: 'text/javascript',
-  async: true,
-}, '', document.head);
+createEl('script', {}, `
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Z39YF2LV3B');
+`, document.head);
+
+// createEl('script', {
+//   src: 'https://www.googletagmanager.com/gtag/js?id=G-N8KZTN12K6&l=beehiveDataLayer&cx=c',
+//   type: 'text/javascript',
+//   async: true,
+// }, '', document.head);
+
+// createEl('script', {
+//   src: 'https://www.googletagmanager.com/gtag/js?id=UA-115750224-1&l=beehiveDataLayer',
+//   type: 'text/javascript',
+//   async: true,
+// }, '', document.head);
 
 /* Meta */
 createEl('script', {
