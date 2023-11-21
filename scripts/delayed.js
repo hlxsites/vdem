@@ -42,13 +42,7 @@ createEl('script', {
 }, '', document.head);
 
 createEl('script', {
-  src: 'https://www.googletagmanager.com/gtag/js?id=G-N8KZTN12K6&l=beehiveDataLayer&cx=c',
-  type: 'text/javascript',
-  async: true,
-}, '', document.head);
-
-createEl('script', {
-  src: 'https://www.googletagmanager.com/gtag/js?id=UA-115750224-1&l=beehiveDataLayer',
+  src: 'https://www.googletagmanager.com/gtag/js?id=G-Z39YF2LV3B',
   type: 'text/javascript',
   async: true,
 }, '', document.head);
