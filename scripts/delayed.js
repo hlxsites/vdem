@@ -47,6 +47,16 @@ createEl('script', {
   async: true,
 }, '', document.head);
 
+createEl('script', {
+}, `
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'G-Z39YF2LV3B');
+`, document.head);
+
 /* Meta */
 createEl('script', {
   src: 'https://connect.facebook.net/signals/config/1404641949861336?v=2.9.111&r=stable',
