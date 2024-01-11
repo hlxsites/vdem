@@ -67,8 +67,8 @@ export default async function decorate(block) {
   }, '', block);
 
   // Fetch the JSON data
-const jsonResp = await fetch('/vdem-options.json'); 
-if (jsonResp.ok) {
+  const jsonResp = await fetch('/vdem-options.json'); 
+  if (jsonResp.ok) {
   const jsonData = await jsonResp.json();
 
   // Extract the "veoc-status" value
@@ -84,7 +84,7 @@ if (jsonResp.ok) {
 
   // Append the status element to the desired parent element (assuming chinEl is the parent)
   chinEl.appendChild(statusEl);
-}
+  }
 
   const searchBarEl = createEl('div', {
     class: 'search',
