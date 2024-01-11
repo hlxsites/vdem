@@ -66,13 +66,24 @@ export default async function decorate(block) {
     class: 'chin',
   }, '', block);
 
-  const statusResp = await fetch('/vest-status.plain.html');
-  if (statusResp.ok) {
-    const html = await statusResp.text();
+  // Fetch the JSON data
+  const jsonResp = await fetch('/vdem-options.json'); 
+  if (jsonResp.ok) {
+  const jsonData = await jsonResp.json();
 
-    const statusEl = createEl('div', {
-      class: 'status',
-    }, html, chinEl);
+  // Extract the "veoc-status" value
+  const veocStatus = jsonData.data.find(item => item.Variable === "veoc-status")?.Value || "Green - Steady State";
+
+  // Create the status string
+  const statusString = `Emergency Support Team (VEST) Status: ${veocStatus}`;
+
+  // Create the status element
+  const statusEl = createEl('div', {
+    class: 'status',
+  }, statusString, chinEl);
+
+  // Append the status element to the desired parent element (assuming chinEl is the parent)
+  chinEl.appendChild(statusEl);
   }
 
   const searchBarEl = createEl('div', {
