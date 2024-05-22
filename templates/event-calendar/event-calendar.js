@@ -194,10 +194,8 @@ function displayEvents(resultsObj) {
 }
 
 export default async function decorate(doc) {
-  //const assetHost = getMetadata('assethost');
+  const assetHost = getMetadata('assethost');
   const feedURL = getMetadata('feedurl');
-  const assetHost = 'https://publish-p121357-e1313572.adobeaemcloud.com';
-  // const assetHost = 'http://localhost:8080';
   const response = await fetch(assetHost + feedURL);
   feedObj = await response.json();
   eventsObj = feedObj.events;
