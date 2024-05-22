@@ -1,0 +1,234 @@
+
+#calendar-container {
+  display: flex;
+  flex-direction: column;
+  --blue: #163963;
+}
+
+#calendar-container .button {
+  background-color: var(--blue);
+  border-radius: 5px;
+}
+
+#calendar-container :is(div, h1, h2) {
+  box-sizing: border-box;
+}
+
+#left-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
+#right-col {
+  
+}
+
+#left-col #search-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 16px;
+  border-bottom: 2px solid darkgray;
+}
+
+#left-col #search-form label {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  margin: 2px;
+  width: 75%;
+  font-size: 15px;
+}
+
+#left-col #search-form label :is(input, select) {
+  padding: 5px;
+  margin: 2px;
+  width: 100%;
+  border: 1px solid var(--blue);
+  font-size: 15px;
+}
+
+#left-col, #right-col {
+  position: relative;
+  width: 100vw;
+}
+
+#event-results {
+  width: 100cw; 
+}
+
+#event-results #event-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-content: stretch;
+  gap: 16px;
+  width: 100vw;
+}
+
+#event-results .event-list-item {
+  display: flex;
+  flex-direction: column;
+  margin: 0 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid darkgray;
+  min-height: 125px;
+}
+
+#event-results #event-range {
+  width: 100vw;
+  padding: 20px;
+  background-color: var(--blue);
+  color: white;
+}
+
+#event-results .event-list-item h3 {
+  font-size: 20px;
+  color: var(--blue);
+}
+
+#event-results .event-list-item h4 {
+  font-size: 15px;
+}
+
+#event-results .event-list-item > div {
+  display: flex;
+  flex-direction: column;
+}
+
+#event-results .event-list-item .event-list-item-title {
+  width: 100%;
+}
+
+#event-results .event-list-item .event-list-item-date-range {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  font-weight: bold;
+  gap: 10px;
+}
+
+#event-results .event-list-item .event-item-basics {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+#event-results .event-list-item .event-item-cal {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+
+dialog {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  border: 0;
+  overscroll-behavior: contain;
+}
+
+dialog .event-info-dialog-content {
+  display: flex;
+  flex-direction: column;
+  width: 100cw;
+  height: 100%;
+  margin-bottom: 30px;
+  padding: 10px;
+}
+
+dialog .dialog-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 10px;
+}
+
+dialog .event-info-dialog-content h2 {
+  border-bottom: 1px solid lightgray;
+}
+
+@media (min-width: 900px) {
+  #calendar-container {
+    flex-direction: row;
+  }
+
+  #calendar-container #left-col {
+    width: 25vw;
+  }
+
+  #calendar-container #left-col #search-form {
+    border-bottom: 0;
+  }
+    
+  #calendar-container #right-col {
+      width: 75vw;
+      padding-right: 16px;
+  }
+
+  #event-results #event-range {
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  #event-results #event-list {
+    width: 100%;
+  }
+
+  #event-results .event-list-item {
+    flex-direction: row;
+    min-height: 100px;
+  }
+
+  #event-results .event-list-item .event-list-item-date-range {
+    flex-direction: column;
+    width: 200px;
+    gap: 0px;
+  }
+
+  #event-results .event-list-item .event-item-basics {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  #event-results .event-list-item .event-item-cal {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+  }
+
+  dialog {
+    position: relative;
+    width: 75vw;
+    height: 75vh;
+    border: 0;
+    overscroll-behavior: contain;
+  }
+  
+  dialog .event-info-dialog-content {
+    display: flex;
+    flex-direction: column;
+    width: 100cw;
+    height: 100%;
+    margin-bottom: 30px;
+    padding: 10px;
+  }
+  
+  dialog .dialog-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 10px;
+  }
+  
+  dialog .event-info-dialog-content h2 {
+    border-bottom: 1px solid lightgray;
+  }
+}

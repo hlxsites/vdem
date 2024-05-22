@@ -103,18 +103,25 @@ export async function loadCSS(href) {
  * @param {Object} attrs additional optional attributes
  */
 
-export async function loadScript(src, attrs) {
+export async function loadScript(src, attrs, func) {
   return new Promise((resolve, reject) => {
     if (!document.querySelector(`head > script[src="${src}"]`)) {
       const script = document.createElement('script');
       script.src = src;
       if (attrs) {
-      // eslint-disable-next-line no-restricted-syntax, guard-for-in
+        // eslint-disable-next-line no-restricted-syntax, guard-for-in
         for (const attr in attrs) {
           script.setAttribute(attr, attrs[attr]);
         }
       }
-      script.onload = resolve;
+      script.onload = () => {
+        if (func) {
+          resolve();
+          func();
+        } else {
+          resolve();
+        }
+      };
       script.onerror = reject;
       document.head.append(script);
     } else {
