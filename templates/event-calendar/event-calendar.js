@@ -117,17 +117,18 @@ function displayEvents(resultsObj) {
         type,
         attachments,
       } = eventObj;
-      const startDateFormatted = DateTime.fromISO(startDate).toFormat(EVENT_DATE_FORMAT);
-      const endDateFormatted = (endDate && (endDate !== startDate)) ? DateTime.fromISO(endDate).toFormat(EVENT_DATE_FORMAT) : '';
+      const locationInformationTruncated = (locationInformation) ? `${locationInformation.replace(/(<([^>]+)>)/ig, '').substring(0, 50)}...` : '';
+      const startDateDisplay = DateTime.fromISO(startDate).toFormat(EVENT_DATE_FORMAT);
+      const endDateDisplay = (endDate && (endDate !== startDate)) ? DateTime.fromISO(endDate).toFormat(EVENT_DATE_FORMAT) : '';
       const endTime24Formatted = (startTime24 && !endTime24)
         ? DateTime.fromISO(startTime24).plus({ hours: 1 }).toFormat(TIME24_FORMAT) : endTime24;
       const eventEl = createEl('div', {
         class: 'event-list-item',
       }, `
       <div class="event-list-item-date-range">
-        <span>${startDateFormatted}</span>
+        <span>${startDateDisplay}</span>
         <span>${startTime || ''}</span>
-        <span>${endDateFormatted || ''}</span>
+        <span>${endDateDisplay || ''}</span>
         <span>${endTime || ''}</span>
       </div>
       <div class="event-item-basics">
@@ -135,6 +136,7 @@ function displayEvents(resultsObj) {
           ${title}
         </h3>
         <h4>${category || ''}</h4>
+        <h4>${locationInformationTruncated}</h4>
       </div>
       <div class="event-item-cal">
         <h4>${type || ''}</h4>
@@ -176,6 +178,7 @@ function displayEvents(resultsObj) {
           download: filename,
           href: attachmentPath,
         }, filename, eventAttsEl);
+        createEl('br', {}, '', eventAttsEl);
       }
       dialogEl.querySelector('button').addEventListener('click', () => {
         dialogEl.close();
