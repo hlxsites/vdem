@@ -252,6 +252,8 @@ export default async function decorate(doc) {
     const urlParams = new URLSearchParams(window.location.search);
     const startDateParam = urlParams.get('startdate');
     const endDateParam = urlParams.get('enddate');
+    const currentYear = new Date().getFullYear();
+    const endOfYear = `${currentYear}-12-31`;
     let initDates;
     if (startDateParam) {
       initDates = startDateParam;
@@ -259,7 +261,7 @@ export default async function decorate(doc) {
         initDates = `${startDateParam}:${endDateParam}`;
       }
     } else {
-      initDates = today;
+      initDates = `${today}:${endOfYear}`;
     }
     // eslint-disable-next-line no-undef
     const calendar = new VanillaCalendar('#calendar', {
@@ -274,8 +276,7 @@ export default async function decorate(doc) {
           daysOutside: false,
         },
         selected: {
-          //dates: [initDates],
-          dates: [`${today}:2024-12-31`],
+          dates: [initDates],
         },
       },
       actions: {
