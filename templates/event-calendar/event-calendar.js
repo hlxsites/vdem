@@ -274,7 +274,8 @@ export default async function decorate(doc) {
           daysOutside: false,
         },
         selected: {
-          dates: [initDates],
+          //dates: [initDates],
+          dates: [`${today}:2024-12-31`],
         },
       },
       actions: {
