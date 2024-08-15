@@ -301,9 +301,6 @@ export default async function decorate(doc) {
     }
 
     const searchTermsEl = document.querySelector('#search-terms');
-    for (const i in keywordsArr) {
-      createEl('option', {}, keywordsArr[i], keywordEl);
-    }
 
     document.querySelector('#search-button').addEventListener('click', () => {
       const category = categoryEl.value;
